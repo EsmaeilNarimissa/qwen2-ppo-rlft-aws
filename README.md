@@ -1,18 +1,23 @@
-# Qwen2 Fine-Tuning with PPO on SageMaker
+# Qwen2.5 Reinforcement Learning Fine-Tuning (RLFT) with PPO on SageMaker
 
 ## Overview
 
-This repository contains the code and configuration for fine-tuning a Qwen2 language model (specifically `Qwen/Qwen2.5-0.5B-Instruct`) using Proximal Policy Optimization (PPO) and Low-Rank Adaptation (LoRA) on the `predibase/countdown` dataset. The goal is to train the model to generate correct mathematical equations based on given numbers, adhering to a specific output format (`<think>...</think><answer>...</answer>`). The entire training and evaluation pipeline is designed to be executed within AWS SageMaker, leveraging its capabilities for distributed training and resource management.
+This repository presents *Qwen2.5 Reinforcement Learning Fine-Tuning (RLFT) with PPO on SageMaker*, a complete and modular pipeline for aligning the Qwen/Qwen2.5-0.5B-Instruct language model with task-specific reward signals. The model is trained using **Proximal Policy Optimization (PPO)** and **Low-Rank Adaptation (LoRA)**, and fine-tuned to generate mathematically correct equations from a list of given numbers, following a structured format:
 
-## Key Features
+`<think>...</think><answer>...</answer>`
 
-*   **Model:** Qwen2 (`Qwen/Qwen2.5-0.5B-Instruct`)
-*   **Dataset:** `predibase/countdown`
-*   **Fine-tuning Technique:** Proximal Policy Optimization (PPO) using the `trl` library.
-*   **Efficiency:** Low-Rank Adaptation (LoRA) via the `peft` library for parameter-efficient fine-tuning.
-*   **Reward Mechanism:** Custom reward functions to evaluate both the output format and the mathematical correctness of the generated equations.
-*   **Platform:** AWS SageMaker for training orchestration, utilizing `PyTorch` estimators and potentially Spot Instances for cost optimization.
-*   **Environment:** A `Dockerfile` is provided to build a custom container image with all necessary dependencies.
+The project is built to run entirely on **AWS SageMaker**, taking advantage of scalable infrastructure, optional Spot Instance pricing, and Docker-based environment management.
+
+**Key Features**
+
+-   **Model**: Qwen/Qwen2.5-0.5B-Instruct
+-   **Dataset**: `predibase/countdown`, a structured math reasoning dataset
+-   **Fine-Tuning Strategy**: Reinforcement Learning via PPO using the `trl` library
+-   **Efficiency**: LoRA-based adapter tuning through the `peft` library for minimal GPU overhead
+-   **Reward Mechanism**: Custom format and math evaluation functions that provide feedback on both structure and correctness
+-   **Platform**: AWS SageMaker with support for PyTorch estimators and managed compute
+-   **Environment**: Self-contained Docker image defined via `Dockerfile` for portable deployment and reproducibility
+
 
 ## File Structure
 
